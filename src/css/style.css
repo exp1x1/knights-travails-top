@@ -1,40 +1,143 @@
+@font-face {
+  font-family: raleway;
+  src: url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&family=Teko&display=swap");
+}
+
+:root {
+  --cell: 120px;
+  --gameBoard-width: calc(var(--cell) * 8);
+  --gameboard-margin: calc((100vh - var(--gameBoard-width)) / 2);
+
+  --first-color: #8ca464;
+  --second-color: #434a3a;
+  --gameboard-font-color: #ffffff;
+  --sidebar-font-color: #ffffff;
+
+  --cell-font-size: 98px;
+  --heading-font-size: 100px;
+  --button-font-size: 2.2rem;
+}
+
 body {
+  width: 100%;
+  height: 100%;
+
   display: grid;
   grid-template-columns: 2fr 1fr;
 
   align-items: center;
   justify-items: center;
 
-  margin: 40px;
+  margin-top: var(--gameboard-margin);
+
+  background-color: black;
 }
 
 .gameboard {
+  width: var(--gameBoard-width);
+  height: 100%;
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
-  width: 800px;
+  font-family: raleway;
+  font-weight: bold;
+
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  /* font color */
+  color: var(--gameboard-font-color);
 }
 
 .cell {
-  width: 100px;
-  height: 100px;
+  width: var(--cell);
+  height: var(--cell);
 
-  /* border: 1px solid black; */
+  font-size: var(--cell-font-size);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+.start-cell {
+  background: url(../img/m_knight.png);
+  background-size: cover;
 }
 
 .black-cell {
-  background-color: darkgray;
+  background-color: var(--first-color);
 }
 
 .white-cell {
-  background-color: aliceblue;
+  background-color: var(--second-color);
 }
 
-.start-cell {
-  background: url(../img/f_knight.png);
-  background-size: cover;
-}
 .end-cell {
   background-color: red;
+}
+
+.start-text {
+  font-size: calc(var(--cell-font-size) / 4);
+}
+
+.sidebar {
+  width: 100%;
+  /* height: 100%; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 80px;
+}
+
+.sidebar > h1 {
+  color: var(--sidebar-font-color);
+  font-size: var(--heading-font-size);
+}
+
+.utility {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.utility > button {
+  width: 280px;
+  background-color: black;
+  border: 2px solid #fff;
+  cursor: pointer;
+
+  color: var(--sidebar-font-color);
+  font-size: var(--button-font-size);
+
+  /* transition  */
+  padding: 2px;
+}
+
+.utility > button:active {
+  padding: 0px;
+  border: 4px solid #fff;
+}
+
+.github {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  width: 50px;
+  height: 50px;
+
+  background-color: #fff;
+  background-image: url(../img/github.svg);
+  background-size: contain ;
+
+  border-radius: 50%;
+}
+
+.github:hover {
+  width: 70px;
+  height: 70px;
 }

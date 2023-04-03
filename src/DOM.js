@@ -1,5 +1,3 @@
-// import knightImg from './img/f_knight.png'
-
 function renderCell() {
   const gameBoardContainer = document.querySelector(".gameboard");
   gameBoardContainer.replaceChildren("");
@@ -25,7 +23,7 @@ function renderCell() {
   }
 }
 
-function addImgToStart(element) {
+function addImgToCell(element) {
   const ele = document.querySelector(".start-cell");
   if (ele !== null) ele.classList.remove("start-cell");
 
@@ -34,10 +32,55 @@ function addImgToStart(element) {
 
 function changeColorToEndPoint(element) {
   const ele = document.querySelector(".end-cell");
-  console.log(ele);
   if (ele !== null) ele.classList.remove("end-cell");
 
   element.classList.add("end-cell");
 }
 
-export { renderCell, addImgToStart, changeColorToEndPoint };
+function clearPlace() {
+  const endEle = document.querySelector(".end-cell");
+  const startEle = document.querySelector(".start-cell");
+  const fistEle = document.querySelector(".start-text");
+
+  if (endEle !== null) {
+    endEle.classList.remove("end-cell");
+  }
+  if (startEle !== null) {
+    startEle.classList.remove("start-cell");
+  }
+  if (fistEle !== null) {
+    fistEle.classList.remove("start-text");
+  }
+
+  const allCells = document.querySelectorAll(".cell");
+  // console.log(allCells, "hh");
+
+  allCells.forEach((element) => {
+    element.textContent = "";
+  });
+}
+
+
+function renderPath(arr) {
+  // clearPlace();
+  for (let i = 0; i < arr.length; i++) {
+    const domElement = document.querySelector(`[cell-data="${arr[i]}"]`);
+    if (i === 0) {
+      domElement.classList.add("start-text");
+      domElement.textContent = "START";
+    } else if (i === arr.length - 1) {
+      addImgToCell(domElement);
+    } else {
+      domElement.textContent = i;
+    }
+    // console.log(domElement);
+  }
+}
+
+export {
+  renderCell,
+  renderPath,
+  addImgToCell,
+  changeColorToEndPoint,
+  clearPlace,
+};

@@ -62,7 +62,7 @@ export function knightGame(size) {
 }
 
 export function Knight() {
-  let start;
-  let end;
+  let start = null;
+  let end = null;
   return { start, end };
 }
